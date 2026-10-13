@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DHANASRI Laundry</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4fff6;
+      color: #183b25;
+    }
+    header {
+      background: #087b3b;
+      color: white;
+      padding: 24px 16px;
+      text-align: center;
+    }
+    header h1 { margin: 0 0 8px; }
+    main {
+      max-width: 650px;
+      margin: 24px auto;
+      padding: 16px;
+    }
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px #0001;
+    }
+    label { display: block; margin-top: 14px; }
+    input, select, textarea, button {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: 1px solid #bbb;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      background: #087b3b;
+      color: white;
+      border: none;
+      margin-top: 18px;
+    }
+    footer { text-align: center; padding: 20px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DHANASRI Laundry</h1>
+    <p>Professional Laundry & Dry Cleaning Service</p>
+  </header>
+  <main>
+    <div class="card">
+      <h2>Book a Pickup</h2>
+      <p>Schedule your laundry pickup conveniently.</p>
+      <form id="booking">
+        <label for="name">Customer Name</label>
+        <input id="name" required placeholder="Enter your name">
+        <label for="phone">Mobile Number</label>
+        <input id="phone" type="tel" required
+          pattern="[0-9]{10}" placeholder="10-digit mobile number">
+        <label for="service">Select Service</label>
+        <select id="service">
+          <option>Wash & Iron</option>
+          <option>Dry Cleaning</option>
+          <option>Ironing</option>
+          <option>Saree & Lehenga Care</option>
+        </select>
+        <label for="address">Pickup Address</label>
+        <textarea id="address" required
+          placeholder="Enter your full address"></textarea>
+        <label for="date">Pickup Date</label>
+        <input id="date" type="date" required>
+        <button type="submit">Request Pickup on WhatsApp</button>
+      </form>
+      <p id="status" aria-live="polite"></p>
+    </div>
+  </main>
+  <footer>© DHANASRI Laundry</footer>
+  <script>
+    document.getElementById("booking").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const service = document.getElementById("service").value;
+      const address = document.getElementById("address").value.trim();
+      const date = document.getElementById("date").value;
+      const message = "DHANASRI Laundry Pickup Request\n" +
+        "Name: " + name + "\nMobile: " + phone +
+        "\nService: " + service + "\nAddress: " + address +
+        "\nPickup Date: " + date;
+      document.getElementById("status").textContent =
+        "Opening WhatsApp to send your request.";
+      window.open("https://wa.me/?text=" + encodeURIComponent(message), "_blank");
+    });
+  </script>
+</body>
+</html>
